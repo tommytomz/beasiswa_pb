@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests\SiswaRequest;
+use App\Http\Requests\MahasiswaRequest;
 use App\MahasiswaModel;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -15,7 +15,7 @@ class MahasiswaController extends Controller
     	return view('mahasiswa.formmahasiswa');
     }
 
-    public function simpan(SiswaRequest $request){
+    public function simpan(MahasiswaRequest $request){
     	$model = new MahasiswaModel;
     	$model->npm 			= $request->get('npm');
     	$model->nama 			= $request->get('nama');
@@ -63,7 +63,7 @@ class MahasiswaController extends Controller
         return view('mahasiswa.formubahmahasiswa', ['data' => $data]);
     }
 
-    public function ubah(SiswaRequest $request){
+    public function ubah(MahasiswaRequest $request){
         $model = new MahasiswaModel;
         $model->key             = $request->get('key');
         $model->npm             = $request->get('npm');

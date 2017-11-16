@@ -29,3 +29,10 @@ Route::post('/mahasiswa/ubah', 'MahasiswaController@ubah');
 Route::get('/mahasiswa/hapus', 'MahasiswaController@hapus');
 
 Route::get('/penilaian/formpenilaian', 'PenilaianController@formpenilaian');
+Route::post('/penilaian/simpan', 'PenilaianController@simpan');
+Route::get('/penilaian/daftarpenilaian', 'PenilaianController@daftarpenilaian');
+Route::get('/penilaian/datapenilaian', 'PenilaianController@datapenilaian')
+			->name('datapenilaian.data');
+Route::get('/penilaian/formubahpenilaian', 'PenilaianController@formubahpenilaian');
+Route::post('/penilaian/ubah', 'PenilaianController@ubah');
+Route::get('/penilaian/hapus', 'PenilaianController@hapus');

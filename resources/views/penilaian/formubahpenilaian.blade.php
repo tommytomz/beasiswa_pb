@@ -12,8 +12,12 @@
 
 
 
-{!! Form::open(array('url'=>'penilaian/simpan', 'class' => 'form col-lg-4', 'id' => 'formdata', 'method' => 'POST')) !!}
+{!! Form::open(array('url'=>'penilaian/ubah', 'class' => 'form col-lg-4', 'id' => 'formdata', 'method' => 'POST')) !!}
 <div id="hasil"></div>
+
+@foreach($data as $cdata)
+
+{!! Form::hidden('key', $cdata->ID_Penilaian) !!}
 
 
 <div class="form-group">
@@ -30,7 +34,7 @@
 
 <div class="form-group">
     {!! Form::label('IPK') !!}
-    {!! Form::text('ipk', null, 
+    {!! Form::text('ipk', $cdata->IPK, 
         array('required', 
               'class'=>'form-control', 
               'placeholder'=>'IPK')) !!}
@@ -39,7 +43,7 @@
 
 <div class="form-group">
     {!! Form::label('Penghasilan Orangtua') !!}
-    {!! Form::text('penghasilan', null, 
+    {!! Form::text('penghasilan', $cdata->Penghasilan_Orangtua, 
         array('required', 
               'class'=>'form-control', 
               'placeholder'=>'Penghasilan Orangtua')) !!}
@@ -48,7 +52,7 @@
 
 <div class="form-group">
     {!! Form::label('Tanggungan Orangtua') !!}
-    {!! Form::text('tanggungan', null, 
+    {!! Form::text('tanggungan', $cdata->Tanggungan_Orangtua, 
         array('required', 
               'class'=>'form-control', 
               'placeholder'=>'Tanggungan Orangtua')) !!}
@@ -57,15 +61,16 @@
 
 <div class="form-group">
     {!! Form::label('Jarak') !!}
-    {!! Form::text('jarak', null, 
+    {!! Form::text('jarak', $cdata->Jarak, 
         array('required', 
               'class'=>'form-control', 
               'placeholder'=>'Jarak')) !!}
 
 </div>
 
+@endforeach
 
-{!! Form::submit('Simpan', array('class'=>'btn btn-primary', 'id'=>'tombol')) !!}
+{!! Form::submit('Ubah', array('class'=>'btn btn-primary', 'id'=>'tombol')) !!}
 
 
 {!! Form::close() !!}
@@ -83,7 +88,7 @@
 var form = $("#formdata");
  
     form.submit(function(e) {
-		
+    
        e.preventDefault();
         $.ajax({
             url     : form.attr('action'),
@@ -93,10 +98,9 @@ var form = $("#formdata");
             success : function ( json )
             {
               if(json.status===200){
-                $("#formdata")[0].reset();
-				        alert("sukses");
+                location.href='{{ url('/penilaian/daftarpenilaian') }}';
+                alert(json.message);
                 
-
               }
             },
             error: function( json )

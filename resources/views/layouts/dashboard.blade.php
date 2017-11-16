@@ -281,7 +281,7 @@
                                     <a href="{{ url ('penilaian/formpenilaian') }}">Insert Penilaian</a>
                                 </li>
                                 <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('mahasiswa/daftarmhs' ) }}">Daftar Penilaian</a>
+                                    <a href="{{ url ('penilaian/daftarpenilaian' ) }}">Daftar Penilaian</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -1,6 +1,6 @@
 
 @extends ('layouts.dashboard')
-@section('page_heading','Insert Penilaian')
+@section('page_heading','Insert Perhitungan')
 
 @section('section')
 

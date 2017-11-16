@@ -16,14 +16,15 @@
 	
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-
-    <link rel="stylesheet" href="{{ asset('assets/stylesheets/styles.css') }}" />
+    
+	<link rel="stylesheet" href="{{ asset('assets/stylesheets/styles.css') }}" />
+    
 	
-
-	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="{{ asset('assets/scripts/jquery.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/scripts/frontend.js') }}" type="text/javascript"></script>
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+	<script src="{{ asset('assets/scripts/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/scripts/bootstrap.min.js') }}" type="text/javascript"></script> 
+	
 
 
 </head>
@@ -32,6 +33,8 @@
 	
 
 	
+	
+    
     
 	
 	
