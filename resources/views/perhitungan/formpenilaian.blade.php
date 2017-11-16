@@ -10,9 +10,21 @@
     @endforeach
 </ul> --}}
 
+<div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Tab 1</a></li>
+        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Tab 2</a></li>
+    </ul>
 
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1">...</div>
+        <div role="tabpanel" class="tab-pane" id="tab2">...</div>
+    </div>
+</div>
 
-{!! Form::open(array('url'=>'penilaian/simpan', 'class' => 'form col-lg-4', 'id' => 'formdata', 'method' => 'POST')) !!}
+{{-- {!! Form::open(array('url'=>'penilaian/simpan', 'class' => 'form col-lg-4', 'id' => 'formdata', 'method' => 'POST')) !!}
 <div id="hasil"></div>
 
 
@@ -68,7 +80,7 @@
 {!! Form::submit('Simpan', array('class'=>'btn btn-primary', 'id'=>'tombol')) !!}
 
 
-{!! Form::close() !!}
+{!! Form::close() !!} --}}
 
 {{-- <script>
   $(document).ready(function () {
@@ -79,7 +91,7 @@
 
 
 </script> --}}
-<script>
+{{-- <script>
 var form = $("#formdata");
  
     form.submit(function(e) {
@@ -115,7 +127,7 @@ var form = $("#formdata");
         });
         
     });
-</script>
+</script> --}}
 {{-- @include('vendor.lrgt.ajax_script', ['form' => '#formsiswa', 'request'=>'App/Http/Requests/SiswaRequest','on_start'=>true]) --}}
 
 @stop
