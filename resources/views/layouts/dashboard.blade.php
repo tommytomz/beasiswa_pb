@@ -287,6 +287,20 @@
                             <!-- /.nav-second-level -->
                         </li>
 
+                         <!-- link data perhitungan -->
+                        <li >
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Perhitungan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*panels') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('perhitungan/formperhitungan') }}">Perhitungan AHP</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('penilaian/daftarpenilaian' ) }}">Daftar Perhitungan</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
                         
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
                             <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>

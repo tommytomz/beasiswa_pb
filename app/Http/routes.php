@@ -36,3 +36,5 @@ Route::get('/penilaian/datapenilaian', 'PenilaianController@datapenilaian')
 Route::get('/penilaian/formubahpenilaian', 'PenilaianController@formubahpenilaian');
 Route::post('/penilaian/ubah', 'PenilaianController@ubah');
 Route::get('/penilaian/hapus', 'PenilaianController@hapus');
+
+Route::get('/perhitungan/formperhitungan', 'PerhitunganController@formperhitungan');

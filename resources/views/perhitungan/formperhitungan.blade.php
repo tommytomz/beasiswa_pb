@@ -1,6 +1,6 @@
 
 @extends ('layouts.dashboard')
-@section('page_heading','Insert Perhitungan')
+@section('page_heading','Perhitungan AHP')
 
 @section('section')
 
@@ -13,14 +13,20 @@
 <div role="tabpanel">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Tab 1</a></li>
-        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Tab 2</a></li>
+        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">IPK</a></li>
+        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Penghasilan Orangtua</a></li>
+        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Tanggungan Orangtua</a></li>
+        <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Jarak</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="tab1">...</div>
+        <div role="tabpanel" class="tab-pane active" id="tab1">
+          
+        </div>
         <div role="tabpanel" class="tab-pane" id="tab2">...</div>
+        <div role="tabpanel" class="tab-pane" id="tab3">...</div>
+        <div role="tabpanel" class="tab-pane" id="tab4">...</div>
     </div>
 </div>
 
