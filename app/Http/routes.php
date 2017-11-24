@@ -38,3 +38,4 @@ Route::post('/penilaian/ubah', 'PenilaianController@ubah');
 Route::get('/penilaian/hapus', 'PenilaianController@hapus');
 
 Route::get('/perhitungan/formperhitungan', 'PerhitunganController@formperhitungan');
+Route::get('/perhitungan/tesahp', 'PerhitunganController@tesahp');

@@ -13,16 +13,65 @@
 <div role="tabpanel">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">IPK</a></li>
-        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Penghasilan Orangtua</a></li>
-        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Tanggungan Orangtua</a></li>
-        <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Jarak</a></li>
+        <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Kriteria</a></li>
+        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Sub Kriteria IPK</a></li>
+        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Sub Kriteria Penghasilan Orangtua</a></li>
+        <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Sub Kriteria Tanggungan Orangtua</a></li>
+        <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">Sub Kriteria Jarak</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-      <!-- IPK -->
+        <!-- Kriteria -->
         <div role="tabpanel" class="tab-pane active" id="tab1">
+          <br>
+          <div class="col-sm-6">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-sm-2">#</th>
+                  <th scope="col" class="col-sm-2">IPK</th>
+                  <th scope="col" class="col-sm-2">Penghasilan Orangtua</th>
+                  <th scope="col" class="col-sm-2">Tanggungan Orangtua</th>
+                  <th scope="col" class="col-sm-2">Jarak</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" >IPK</th>
+                  <td>1</td>
+                  <td>{!! Form::text('kriteria1', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria1', 'lblkriteria1')")) !!}</td>
+                  <td>{!! Form::text('kriteria2', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria2', 'lblkriteria2')")) !!}</td>
+                  <td>{!! Form::text('kriteria3', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria3', 'lblkriteria3')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Penghasilan Orangtua</th>
+                  <td><label id="lblkriteria1">0.33</label></td>
+                  <td>1</td>
+                  <td>{!! Form::text('kriteria4', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria4', 'lblkriteria4')")) !!}</td>
+                  <td>{!! Form::text('kriteria5', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria5', 'lblkriteria5')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tanggungan Orangtua</th>
+                  <td><label id="lblkriteria2">0.25</label></td>
+                  <td><label id="lblkriteria4">0.33</label></td>
+                  <td>1</td>
+                  <td>{!! Form::text('kriteria6', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria6', 'lblkriteria6')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Jarak</th>
+                  <td><label id="lblkriteria3">0.25</label></td>
+                  <td><label id="lblkriteria5">0.50</label></td>
+                  <td><label id="lblkriteria6">0.50</label></td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- IPK -->
+        <div role="tabpanel" class="tab-pane" id="tab2">
           <br>
           <div class="col-sm-4">
             <table class="table table-bordered">
@@ -38,28 +87,136 @@
                 <tr>
                   <th scope="row" class="col-sm-3">Rendah</th>
                   <td class="col-sm-3">1</td>
-                  <td>{!! Form::text('ipk1', null, array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk1', 'lblipk1')")) !!}</td>
-                  <td>{!! Form::text('ipk2', null, array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk2', 'lblipk2')")) !!}</td>
+                  <td>{!! Form::text('ipk1', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk1', 'lblipk1')")) !!}</td>
+                  <td>{!! Form::text('ipk2', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk2', 'lblipk2')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Sedang</th>
-                  <td><label id="lblipk1"></label></td>
+                  <td><label id="lblipk1">0.33</label></td>
                   <td>1</td>
-                  <td>{!! Form::text('ipk3', null, array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk3', 'lblipk3')")) !!}</td>
+                  <td>{!! Form::text('ipk3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk3', 'lblipk3')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tinggi</th>
-                  <td><label id="lblipk2"></label></td>
-                  <td><label id="lblipk3"></label></td>
+                  <td><label id="lblipk2">0.25</label></td>
+                  <td><label id="lblipk3">0.50</label></td>
                   <td>1</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab2">...</div>
-        <div role="tabpanel" class="tab-pane" id="tab3">...</div>
-        <div role="tabpanel" class="tab-pane" id="tab4">...</div>
+
+        <!-- Penghasilan Orang Tua -->
+        <div role="tabpanel" class="tab-pane" id="tab3">
+          <br>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Rendah</th>
+                  <th scope="col">Sedang</th>
+                  <th scope="col">Tinggi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="col-sm-3">Rendah</th>
+                  <td class="col-sm-3">1</td>
+                  <td>{!! Form::text('penghasilan1', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('penghasilan1', 'lblpenghasilan1')")) !!}</td>
+                  <td>{!! Form::text('penghasilan2', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('penghasilan2', 'lblpenghasilan2')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sedang</th>
+                  <td><label id="lblpenghasilan1">0.33</label></td>
+                  <td>1</td>
+                  <td>{!! Form::text('penghasilan3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('penghasilan3', 'lblpenghasilan3')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tinggi</th>
+                  <td><label id="lblpenghasilan2">0.25</label></td>
+                  <td><label id="lblpenghasilan3">0.50</label></td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Tanggungan Orang Tua -->
+        <div role="tabpanel" class="tab-pane" id="tab4">
+          <br>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Rendah</th>
+                  <th scope="col">Sedang</th>
+                  <th scope="col">Tinggi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="col-sm-3">Rendah</th>
+                  <td class="col-sm-3">1</td>
+                  <td>{!! Form::text('tanggungan1', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('tanggungan1', 'lbltanggungan1')")) !!}</td>
+                  <td>{!! Form::text('tanggungan2', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('tanggungan2', 'lbltanggungan2')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sedang</th>
+                  <td><label id="lbltanggungan1">0.33</label></td>
+                  <td>1</td>
+                  <td>{!! Form::text('tanggungan3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('tanggungan3', 'lbltanggungan3')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tinggi</th>
+                  <td><label id="lbltanggungan2">0.25</label></td>
+                  <td><label id="lbltanggungan3">0.50</label></td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Jarak -->
+        <div role="tabpanel" class="tab-pane" id="tab5">
+          <br>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Rendah</th>
+                  <th scope="col">Sedang</th>
+                  <th scope="col">Tinggi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="col-sm-3">Rendah</th>
+                  <td class="col-sm-3">1</td>
+                  <td>{!! Form::text('jarak1', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('jarak1', 'lbljarak1')")) !!}</td>
+                  <td>{!! Form::text('jarak2', '4', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('jarak2', 'lbljarak2')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sedang</th>
+                  <td><label id="lbljarak1">0.33</label></td>
+                  <td>1</td>
+                  <td>{!! Form::text('jarak3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('jarak3', 'lbljarak3')")) !!}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tinggi</th>
+                  <td><label id="lbljarak2">0.25</label></td>
+                  <td><label id="lbljarak3">0.50</label></td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
     </div>
 </div>
 
