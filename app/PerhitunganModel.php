@@ -3,9 +3,68 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class PerhitunganModel extends Model
 {
+    public function tampil(){
+        $proses = DB::select(DB::raw('select 
+                                        mhs.NPM,
+                                        mhs.Nama,
+                                        pn.IPK,
+                                        pn.Penghasilan_Orangtua,
+                                        pn.Tanggungan_Orangtua,
+                                        pn.Jarak
+                                     from penilaian pn
+                                     inner join mahasiswa mhs on pn.NPM = mhs.NPM'));
+        $proses = collect($proses);
+
+        return $proses;
+    }
+
+    public function tampilnilai(){
+        $proses = DB::select(DB::raw("select 
+                                        mhs.NPM,
+                                        mhs.Nama,
+                                        case
+                                            when pn.IPK > 0 and pn.IPK <= 2.70 then
+                                                '3'
+                                            when pn.IPK > 2.70 and pn.IPK <= 3.20 then
+                                                '2'
+                                            when pn.IPK > 3.20 and pn.IPK <= 4 then
+                                                '1'
+                                        end as IPK ,
+                                        case 
+                                            when pn.Penghasilan_Orangtua > 3500000 then
+                                                '3'
+                                            when pn.Penghasilan_Orangtua > 2000000 and pn.Penghasilan_Orangtua <= 3500000 then
+                                                '2'
+                                            when pn.Penghasilan_Orangtua > 0 and pn.Penghasilan_Orangtua <= 2000000 then
+                                                '1'
+                                        end as Penghasilan_Orangtua,
+                                        case
+                                            when pn.Tanggungan_Orangtua > 0 and pn.Tanggungan_Orangtua <= 3 then 
+                                                '3'
+                                            when pn.Tanggungan_Orangtua > 3 and pn.Tanggungan_Orangtua <= 5 then
+                                                '2'
+                                            when pn.Tanggungan_Orangtua > 5 then
+                                                '1'
+                                        end as Tanggungan_Orangtua,
+                                        case
+                                            when pn.Jarak > 0 and pn.Jarak <=5 then
+                                                '3'
+                                            when pn.Jarak > 5 and pn.Jarak <=10 then
+                                                '2'
+                                            when pn.Jarak > 10 then
+                                                '1'
+                                        end as Jarak
+                                     from penilaian pn
+                                     inner join mahasiswa mhs on pn.NPM = mhs.NPM"));
+        $proses = collect($proses);
+
+        return $proses;
+    }
+
     public function ahp($kriteria, $isikriteria, $subkriteria){
     	$vkriteria = $kriteria;
 
@@ -90,7 +149,8 @@ class PerhitunganModel extends Model
         $subri  		= [0.00, 0.00, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51];
         
         for($i=0; $i<count($subkriteria); $i++){
-            
+            $subamaks[$i]=0;
+
             for($b=0; $b<count($subkriteria[0]); $b++){
                 for($k=0; $k<count($subkriteria[0][0]); $k++){
                     //System.out.print(subkriteria[i][b][k]+" ");
@@ -132,57 +192,61 @@ class PerhitunganModel extends Model
             
             for($b=0; $b<count($subkriteria[0]); $b++){
                 $evnsubkriteria[$i][$b] = $subjumlahkolom[$i][$b] / count($subkriteria[0]);
-                //System.out.print(evnsubkriteria[i][b]+" ");
+                
+                //echo($evnsubkriteria[$i][$b]);
             }
-            //System.out.println("-------------------------");
+            //echo "\n";
             
             for($b=0; $b<count($subkriteria[0]); $b++){
                 $subamaks[$i] += ($subjumlahbaris[$i][$b] * $evnsubkriteria[$i][$b]);
 
             }
-            //System.out.println(subamaks[i]);
-            //System.out.println("-------------------------");
+            /*echo ($subamaks[0]);
+            echo("-------------------------");*/
 
             $subci[$i] = ($subamaks[$i] - count($subkriteria)) / (count($subkriteria) - 1);
             //System.out.println(subci[i]);
             //System.out.println("-------------------------");
 //
             $subcr[$i] = $subci[$i] / $subri[count($subkriteria)-1];
-            //System.out.println(subcr[i]);
+            //echo($subcr[$i]."|");
             //System.out.println("-------------------------");
-
+        }
             //1 = Baik
 	        //2 = Cukup
 	        //3 = Kurang
-	        $statuscr = arrary();
+	        $statuscr = array();
 	        
 	        if($cr > 0.1){
 	            $statuscr[0] = 1;
 	        }
 	        else{
-	            for($i=0; $i<count($subcr); $i++){
-	                if($subcr[i] > 0.1){
-	                    $statuscr[0] = (i+2);
+	            for($a=0; $a<count($subcr); $a++){
+	                if($subcr[$a] > 0.1){
+	                    $statuscr[0] = ($a+2);
 	                    break;
 	                }else{
 	                    $statuscr[0] = 0;
 	                }
 	            }
 	        }
-
+            //echo $statuscr[0];
 	        if($statuscr[0]==0){
 	            $hasilakhir 	= array();
 	            $jumlahakhir  	= array();
 
 	            for($b=0; $b<count($isikriteria); $b++){
+                    
 	                for($k=0; $k<count($isikriteria[0]); $k++){
-	                        $hasilakhir[$b][$k] = $evnkriteria[$k] * $evnsubkriteria[$k][$isikriteria[$b][$k]-1];
+                            //$hasilakhir[$bb][$kk] = 0;
+	                       $hasilakhir[$b][$k] = $evnkriteria[$k] * $evnsubkriteria[$k][$isikriteria[$b][$k]-1];
 
-	                    //System.out.print(hasilakhir[b][k]+" ");
+	                    //echo($evnsubkriteria[1][0]." ");
 	                }
-	                //System.out.println();
+	                //echo "\n";
 	            }
 
+                //print_r($evnsubkriteria);
 	            for($b=0; $b<count($isikriteria); $b++){
 	                $jumlahakhir[$b] = 0;
 	                for($k=0; $k<count($isikriteria[0]); $k++){
@@ -204,6 +268,4 @@ class PerhitunganModel extends Model
 	        }
 
         }
-
-    }
 }

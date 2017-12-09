@@ -9,6 +9,42 @@
         <li>{{ $error }}</li>
     @endforeach
 </ul> --}}
+<div class="form-group">
+  <table class="table table-bordered" id="data-table">
+        <thead>
+            <tr>
+                <th>NPM</th>
+                <th>Nama</th>
+                <th>IPK</th>
+                <th>Penghasilan Orangtua</th>
+                <th>Tanggungan Orangtua</th>
+                <th>Jarak</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+  $(function() {
+      var tabel = $('#data-table').DataTable({
+          processing: true,
+          serverSide: true,
+          responsive: true,
+          ajax: '{!! url('perhitungan/datanilai') !!}',
+          columns: [
+              { data: 'NPM', name: 'NPM' },
+              { data: 'Nama', name: 'Nama' },
+              { data: 'IPK', name: 'IPK' },
+              { data: 'Penghasilan_Orangtua', name: 'Penghasilan_Orangtua' },
+              { data: 'Tanggungan_Orangtua', name: 'Tanggungan_Orangtua' },  
+              { data: 'Jarak', name: 'Jarak' }
+          ]
+      });
+  });
+</script>
+
+<br><br>
+{!! Form::open(array('url'=>'perhitungan/prosesperhitungan', 'id' => 'formdata', 'method' => 'POST')) !!}
 
 <div role="tabpanel">
     <!-- Nav tabs -->
@@ -46,23 +82,23 @@
                 </tr>
                 <tr>
                   <th scope="row">Penghasilan Orangtua</th>
-                  <td><label id="lblkriteria1">0.33</label></td>
+                  <td><label id="lblkriteria1">0.33</label> {!! Form::hidden('hkriteria1', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('kriteria4', '3', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria4', 'lblkriteria4')")) !!}</td>
                   <td>{!! Form::text('kriteria5', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria5', 'lblkriteria5')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tanggungan Orangtua</th>
-                  <td><label id="lblkriteria2">0.25</label></td>
-                  <td><label id="lblkriteria4">0.33</label></td>
+                  <td><label id="lblkriteria2">0.25</label> {!! Form::hidden('hkriteria2', '0.25') !!}</td>
+                  <td><label id="lblkriteria4">0.33</label> {!! Form::hidden('hkriteria4', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('kriteria6', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('kriteria6', 'lblkriteria6')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Jarak</th>
-                  <td><label id="lblkriteria3">0.25</label></td>
-                  <td><label id="lblkriteria5">0.50</label></td>
-                  <td><label id="lblkriteria6">0.50</label></td>
+                  <td><label id="lblkriteria3">0.25</label> {!! Form::hidden('hkriteria3', '0.25') !!}</td>
+                  <td><label id="lblkriteria5">0.50</label> {!! Form::hidden('hkriteria5', '0.50') !!}</td>
+                  <td><label id="lblkriteria6">0.50</label> {!! Form::hidden('hkriteria6', '0.50') !!}</td>
                   <td>1</td>
                 </tr>
               </tbody>
@@ -92,14 +128,14 @@
                 </tr>
                 <tr>
                   <th scope="row">Sedang</th>
-                  <td><label id="lblipk1">0.33</label></td>
+                  <td><label id="lblipk1">0.33</label> {!! Form::hidden('hipk1', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('ipk3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('ipk3', 'lblipk3')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tinggi</th>
-                  <td><label id="lblipk2">0.25</label></td>
-                  <td><label id="lblipk3">0.50</label></td>
+                  <td><label id="lblipk2">0.25</label> {!! Form::hidden('hipk2', '0.25') !!}</td>
+                  <td><label id="lblipk3">0.50</label> {!! Form::hidden('hipk3', '0.50') !!}</td>
                   <td>1</td>
                 </tr>
               </tbody>
@@ -129,14 +165,14 @@
                 </tr>
                 <tr>
                   <th scope="row">Sedang</th>
-                  <td><label id="lblpenghasilan1">0.33</label></td>
+                  <td><label id="lblpenghasilan1">0.33</label> {!! Form::hidden('hpenghasilan1', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('penghasilan3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('penghasilan3', 'lblpenghasilan3')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tinggi</th>
-                  <td><label id="lblpenghasilan2">0.25</label></td>
-                  <td><label id="lblpenghasilan3">0.50</label></td>
+                  <td><label id="lblpenghasilan2">0.25</label> {!! Form::hidden('hpenghasilan2', '0.25') !!}</td>
+                  <td><label id="lblpenghasilan3">0.50</label> {!! Form::hidden('hpenghasilan3', '0.50') !!}</td>
                   <td>1</td>
                 </tr>
               </tbody>
@@ -166,14 +202,14 @@
                 </tr>
                 <tr>
                   <th scope="row">Sedang</th>
-                  <td><label id="lbltanggungan1">0.33</label></td>
+                  <td><label id="lbltanggungan1">0.33</label> {!! Form::hidden('htanggungan1', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('tanggungan3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('tanggungan3', 'lbltanggungan3')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tinggi</th>
-                  <td><label id="lbltanggungan2">0.25</label></td>
-                  <td><label id="lbltanggungan3">0.50</label></td>
+                  <td><label id="lbltanggungan2">0.25</label> {!! Form::hidden('htanggungan2', '0.25') !!}</td>
+                  <td><label id="lbltanggungan3">0.50</label> {!! Form::hidden('htanggungan3', '0.50') !!}</td>
                   <td>1</td>
                 </tr>
               </tbody>
@@ -203,14 +239,14 @@
                 </tr>
                 <tr>
                   <th scope="row">Sedang</th>
-                  <td><label id="lbljarak1">0.33</label></td>
+                  <td><label id="lbljarak1">0.33</label> {!! Form::hidden('hjarak1', '0.33') !!}</td>
                   <td>1</td>
                   <td>{!! Form::text('jarak3', '2', array('required', 'class'=>'form-control', 'onKeyUp'=>"bagisubkriteria('jarak3', 'lbljarak3')")) !!}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tinggi</th>
-                  <td><label id="lbljarak2">0.25</label></td>
-                  <td><label id="lbljarak3">0.50</label></td>
+                  <td><label id="lbljarak2">0.25</label> {!! Form::hidden('hjarak2', '0.25') !!}</td>
+                  <td><label id="lbljarak3">0.50</label> {!! Form::hidden('hjarak3', '0.50') !!}</td>
                   <td>1</td>
                 </tr>
               </tbody>
@@ -220,6 +256,15 @@
     </div>
 </div>
 
+<br><br><br><br>
+<div class="col-sm-12">
+  {!! Form::submit('Hitung', array('class'=>'btn btn-primary', 'id'=>'tombol')) !!}
+</div>
+
+
+
+{!! Form::close() !!}
+
 <script>
 
   function bagisubkriteria(idtextfield, idlabel){
@@ -228,7 +273,8 @@
     hasil = parseFloat(1/nilai).toFixed(2);
     document.getElementById(idlabel).innerHTML=hasil;
   }
-/*var form = $("#formdata");
+
+var form = $("#formdata");
  
     form.submit(function(e) {
     
@@ -241,8 +287,8 @@
             success : function ( json )
             {
               if(json.status===200){
-                $("#formdata")[0].reset();
-                alert("sukses");
+                //$("#formdata")[0].reset();
+                alert(json.message);
                 
 
               }
@@ -262,7 +308,7 @@
             }
         });
         
-    });*/
+    });
 </script>
 
 {{-- {!! Form::open(array('url'=>'penilaian/simpan', 'class' => 'form col-lg-4', 'id' => 'formdata', 'method' => 'POST')) !!}
